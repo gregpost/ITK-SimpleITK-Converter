@@ -1,3 +1,8 @@
+import SimpleITK as sitk
+import numpy as np
+import itk
+from typing import List
+
 def ConvertItkImageToSimpleItkImage(_itk_image: itk.Image, _pixel_id_value: int, _direction: List[float]) -> sitk.Image:
     """
     Converts ITK image to SimpleITK image
@@ -46,7 +51,7 @@ def CopyImageMetaInformationFromSimpleItkImageToItkImage(_itk_image: itk.Image, 
     itk_image_direction = _itk_image.GetDirection()
     itk_image_direction.GetVnlMatrix().copy_in(np_dir_vnl.data_block())
 
-    dimension: int = _sitk_image.GetImageDimension()
+    dimension: int = _itk_image.GetImageDimension()
     input_image_type = type(_itk_image)
     output_image_type = itk.Image[_output_pixel_type, dimension]
 
